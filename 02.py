@@ -58,7 +58,7 @@ def second_part():
         min_set = game[1][0]
         for draw in game[1][1:]:
             min_set = [max(min_set[0], draw[0]), max(min_set[1], draw[1]), max(min_set[2], draw[2])]
-        
+ 
         power = functools.reduce(lambda a, b : a*b, min_set)
         total_sum += power
 
