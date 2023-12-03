@@ -13,11 +13,11 @@ def parse_game(game_line : str):
             c_stripped = c.lstrip().rstrip()
             count, color = c_stripped.split(" ")
 
-            if color.lstrip() == 'red':
+            if color == 'red':
                 new_draw[0] = int(count)
-            if color.lstrip() == 'green':
+            if color == 'green':
                 new_draw[1] = int(count)
-            if color.lstrip() == 'blue':
+            if color == 'blue':
                 new_draw[2] = int(count)
 
         draws.append(new_draw)
@@ -32,7 +32,7 @@ def first_part():
             game_id, draws = parse_game(line)
             games.append([game_id, draws])
 
-    sum = 0
+    total_sum = 0
     for game in games:
         is_good = True
         for draw in game[1]:
@@ -41,9 +41,9 @@ def first_part():
                 break
         
         if is_good:
-            sum += game[0]
+            total_sum += game[0]
 
-    print(sum)
+    print(total_sum)
 
 def second_part():
     games = []
@@ -52,19 +52,17 @@ def second_part():
             game_id, draws = parse_game(line)
             games.append([game_id, draws])
 
-    sum = 0
+    total_sum = 0
 
     for game in games:
-        is_good = True
         min_set = game[1][0]
         for draw in game[1][1:]:
             min_set = [max(min_set[0], draw[0]), max(min_set[1], draw[1]), max(min_set[2], draw[2])]
         
         power = functools.reduce(lambda a, b : a*b, min_set)
-        print(power)
-        sum += power
+        total_sum += power
 
-    print(sum)
+    print(total_sum)
 
 if __name__ == "__main__":
     first_part()
