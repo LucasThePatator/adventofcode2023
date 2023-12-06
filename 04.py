@@ -1,5 +1,6 @@
 import re
 import numpy as np
+import time
 
 def parse_card(string : str):
     left_numbers, right_numbers = string.split(':')[1].split('|')
@@ -9,6 +10,7 @@ def parse_card(string : str):
     return left_numbers, right_numbers
 
 if __name__ == "__main__":
+    start_time = time.perf_counter()
     data=[]
     with open("./data/04", 'r', encoding="utf-8") as data_file:
         for line in data_file:
@@ -25,13 +27,14 @@ if __name__ == "__main__":
 
     #part 2
     card_counts = np.ones((len(data),1))
-
     for i, d in enumerate(data):
         u = set(d[0]).intersection(set(d[1]))
         matches = len(u)
         card_counts[i+1:i+matches+1] += card_counts[i]
 
-    print(np.sum(card_counts))
+    end_time = time.perf_counter()
+
+    print(f"{np.sum(card_counts)} in {end_time-start_time}s")
 
     
 

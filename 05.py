@@ -1,4 +1,5 @@
 from tqdm import tqdm
+import time
 
 def parse_file(data_file : str):
     blocks = data_file.split('\n\n')
@@ -71,6 +72,7 @@ if __name__ == "__main__":
 
     print(current_ranges)
 
+    start_time = time.perf_counter()
     for current_map in tqdm(maps):
         output_ranges = []
         while len(current_ranges) > 0:
@@ -92,5 +94,8 @@ if __name__ == "__main__":
     for r in current_ranges:
         if r[0] < min_value:
             min_value = r[0]
+    
+    end_time = time.perf_counter()
 
-    print(min_value)
+
+    print(f"{min_value=} in {end_time-start_time}s")
