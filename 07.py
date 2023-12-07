@@ -31,9 +31,9 @@ def get_hand_type(hand : str):
 
 def evaluate_hand1(hand : str):
     set_type = get_hand_type(hand)
-    hand_value =  set_type * 20**5
+    hand_value =  set_type * 13**5
     for i, c in enumerate(hand):
-        hand_value += (14 - card_values.index(c)) * 20**(4-i)
+        hand_value += (13 - card_values.index(c)) * 13**(4-i)
     return hand_value
 
 def evaluate_hand2(hand : str):
@@ -44,9 +44,9 @@ def evaluate_hand2(hand : str):
         local_set_type = get_hand_type(new_hand)
         set_type = max(set_type, local_set_type)
 
-    hand_value =  set_type * 20**5
+    hand_value =  set_type * 13**5
     for i, c in enumerate(hand):
-        hand_value += (14 - card_values2.index(c)) * 20**(4-i)
+        hand_value += (13 - card_values2.index(c)) * 13**(4-i)
     return hand_value
 
 def parse_file(data_file : str):
