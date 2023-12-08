@@ -37,7 +37,6 @@ def evaluate_hand1(hand : str):
     return hand_value
 
 def evaluate_hand2(hand : str):
-
     set_type = 0
     for c in card_values:
         new_hand = hand.replace('J', c)
@@ -72,7 +71,6 @@ if __name__ == "__main__":
         hand.append(hand_value)
 
     hands.sort(key=itemgetter(2))
-    print(hands)
     score = 0
     for i, h in enumerate(hands):
         score += (i+1) * h[1]
