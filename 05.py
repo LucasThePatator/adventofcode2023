@@ -1,5 +1,6 @@
 from tqdm import tqdm
 import time
+import psutil
 
 def parse_file(data_file : str):
     blocks = data_file.split('\n\n')
@@ -70,10 +71,8 @@ if __name__ == "__main__":
     for i in range(0, len(seeds), 2):
         current_ranges.append([seeds[i], seeds[i] + seeds[i+1] - 1])
 
-    print(current_ranges)
-
     start_time = time.perf_counter()
-    for current_map in tqdm(maps):
+    for current_map in maps:
         output_ranges = []
         while len(current_ranges) > 0:
             current_range = current_ranges.pop(0)
